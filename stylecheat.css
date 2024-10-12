@@ -1,0 +1,20 @@
+.boxed {
+    width: 675px;
+    padding: 20px;
+    background-color: rgb(111, 111, 111);
+    box-sizing: border-box;
+    border-radius: 10px;
+    text-align: center;
+}
+.title {
+    background: linear-gradient(to right, blueviolet, pink);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.secthead {
+    background: linear-gradient(to left, rgb(0, 255, 174), rgb(103, 103, 255));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}

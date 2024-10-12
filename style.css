@@ -1,0 +1,218 @@
+/* All of this code should be self explanatory, if you need help, dm me on signal, my user is C3Dev.99 */
+.boxed {
+    width: 675px;
+    padding: 20px;
+    background-color: rgb(111, 111, 111);
+    box-sizing: border-box;
+    border-radius: 10px;
+    text-align: center;
+    margin: 0 auto;
+}
+hr {
+    opacity: 0;
+}
+.title {
+    background: linear-gradient(to right, blueviolet, pink);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.secthead {
+    background: linear-gradient(to left, rgb(0, 255, 174), rgb(103, 103, 255));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+body {
+    background-color: rgb(45, 45, 45);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+h1, h2, h3, h4, h5, h6, p {
+    color: white;
+    text-align: center;
+}
+a {
+    font-weight: bold;
+    color: rgb(212, 149, 255);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+a:hover {
+    color: lightblue;
+}
+.consent-banner {
+    position: fixed;
+    bottom: 0;
+    background-color: #333;
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+    z-index: 1000;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+    border-radius: 10px;
+}
+.consent-text {
+    margin: 0;
+    font-size: 16px;
+    color: #fff;
+}
+.consent-buttons {
+    margin-top: 10px;
+}
+.accept-btn, .decline-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    border: none;
+}
+.accept-btn {
+    background-color: #4CAF50;
+    color: white;
+    margin-right: 10px;
+}
+.decline-btn {
+    background-color: #f44336;
+    color: white;
+}
+.footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #1f1f1f;
+    font-family: Arial, sans-serif;
+    border-radius: 10px;
+}
+.footer a {
+    color: #0066cc;
+    text-decoration: none;
+}
+.footer a:hover {
+    text-decoration: underline;
+}
+button {
+    color: white;
+    background-color: rgb(78, 78, 78);
+    padding: 15px 20px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    transition: color 0.3s ease;
+    border-radius: 10px;
+    font-weight: bold;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+button:hover {
+    color: rgb(0, 0, 0);
+    background-color: rgb(255, 255, 255);
+}
+.codeberg {
+    background-color: black;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-radius: 10px;
+    font-weight: bold;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding: 15px 20px;
+}
+.codeberg:hover {
+    background-color: rgb(87, 87, 87);
+    color: rgb(255, 255, 255);
+}
+.github {
+    background-color: #333;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-radius: 10px;
+    border: none;
+    font-weight: bold;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding: 15px 20px;
+}
+.github:hover {
+    background-color: grey;
+    color: white;
+}
+.email {
+    background-color: lightgreen;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-radius: 10px;
+    border: none;
+    font-weight: bold;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding: 15px 20px;
+}
+.email:hover {
+    background-color: rgb(99, 177, 99);
+    color: white;
+}
+.ublock {
+    background-color: #ff5e5e;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-radius: 10px;
+    border: none;
+    font-weight: bold;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding: 15px 20px;
+}
+.ublock:hover {
+    background-color: rgb(221, 97, 97);
+    color: white;
+}
+.librewolf {
+    background-color: #72ddfd;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-radius: 10px;
+    border: none;
+    font-weight: bold;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding: 15px 20px;
+}
+.librewolf:hover {
+    background-color: #55a2b9;
+    color: white;
+}
+.container {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: space-between;
+}
+.card {
+    background-color: rgb(27, 27, 27);
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    flex: 1;
+    min-width: 200px;
+    max-width: calc(33.33% - 20px);
+}
+.card h3 {
+    margin: 0 0 10px;
+}
+.card a {
+    text-decoration: none;
+    color: #007BFF;
+}
+.card a:hover {
+    text-decoration: underline;
+}
+.card p {
+    margin: 0;
+    color: #ffffff;
+}
+body {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}

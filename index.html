@@ -1,0 +1,391 @@
+<!--Notes Left By C3Dev-->
+<!--Why You Snooping?-->
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <link rel="stylesheet" href="style.css">
+    <title>C3Dev - Home</title>
+  </head>
+  <body>
+    <h1 class="title">C3Dev Portfolio</h1>
+    <h2>tl;dr I am a 15 year old software developer, cybersecurity enthusiast, and privacy activist.</h2>
+    <div class="boxed" id="about">
+      <h2>About</h2>
+      <p> I am a new front end software developer, so I know my way around HTML, but not yet CSS or JS. I am also attempting to learn Python at school, but it's not going well so far. </p>
+      <p> Backend Development is an area I am slowly working on, and a field I am trying to get into. I am learning Node, Express, Mongo, and attempting to find more. </p>
+      <p> Privacy is very important to me, so I suggest the following projects for more security <a href="https://signal.org/">Signal</a>, <a href="https://librewolf.net">LibreWolf</a>, and <a href="https://ublockorigin.com/">uBlock Origin</a>. </p>
+      <p> Apart from web development, I mess around with my friends playing a wide variety of games on Roblox and Minecraft. </p>
+      <p> Cybersecurity and exploit hunting are some fields I am learning. I am currently practicing on <a href="https://tryhackme.com/">TryHackMe</a> to learn my hacking skills/potential I am also in contact with someone who used to be a major hacker to learn how to do white hat hacking and get paid by buisnesses to hack their websites. </p>
+    </div>
+    <hr>
+    <div class="boxed" id="Projects">
+      <h2>Projects</h2>
+      <p>
+        <a href="https://github.com/C3ntr4cy/a">Portfolio</a>: The current portfolio you are looking at.
+      </p>
+      <p>
+        <a href="https://c3ntr4cy.github.io/Portfolio/">V4 Portfolio</a>: The fourth version of my portfolio.
+      </p>
+      <p>
+        <a href="https://github.com/C3ntr4cy/abt">V4.1 Archive</a>: The first attempt at v5. <em>(failed)</em>
+      </p>
+      <p>
+        <a href="https://github.com/C3ntr4cy/about-blank-embedder">about:blank embedder</a>: The about:blank embedder I made.
+      </p>
+    </div>
+    <hr>
+    <div class="boxed" id="buttons">
+      <h2>Buttons</h2>
+      <p>These took a while to design. :p</p>
+      <a href="https://codeberg.org/centracy/">
+        <button class="codeberg">CodeBerg</button>
+      </a>
+      <a href="https://github.com/c3ntr4cy/">
+        <button class="github">GitHub</button>
+      </a>
+      <a href="mailto:c3ntr4cy@gmail.com">
+        <button class="email">Email Me!</button>
+      </a>
+      <a href="https://ublockorigin.com/">
+        <button class="ublock">uBlock Origin</button>
+      </a>
+      <a href="https://librewolf.net/">
+        <button class="librewolf">LibreWolf</button>
+      </a>
+      <!--Long Ass Button-->
+      <a href="https://google.com/">
+      <button id="openButton">Embed In A:B</button>  
+      <script>
+          document.getElementById("openButton").addEventListener("click", function() {
+              const newWindow = window.open("about:blank", "_blank", "width=800,height=600");
+              newWindow.document.write(`
+                  <html>
+                  <head>
+                      <title>About Blank</title>
+                      <style>
+                          body {
+                              margin: 0;
+                              overflow: hidden;
+                          }
+                          iframe {
+                              width: 100vw;
+                              height: 100vh;
+                              border: none;
+                          }
+                      </style>
+                  </head>
+                  <body>
+                      <iframe src="https://c3ntr4cy.github.io/a"></iframe>
+                  </body>
+                  </html>
+              `);
+              newWindow.document.close();
+          });
+      </script>
+      </a>
+      <!--End Of Long Ass Button-->
+    </div>
+    <hr>
+    <!--Music Player-->
+    <div id="MusicPlayer">
+      <div id="music-player-wrapper">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <audio id="audio">
+          <source id="audio-source" src="OnandOn.mp3" type="audio/mpeg"> Your browser does not support the audio element.
+        </audio>
+        <div id="music-player">
+          <div id="player-controls">
+            <button class="icon-button" id="back-button">
+              <i class="fas fa-backward"></i>
+            </button>
+            <button class="icon-button" id="play-button">
+              <i class="fas fa-play"></i>
+            </button>
+            <button class="icon-button" id="pause-button">
+              <i class="fas fa-pause"></i>
+            </button>
+            <button class="icon-button" id="stop-button">
+              <i class="fas fa-stop"></i>
+            </button>
+            <button class="icon-button" id="skip-button">
+              <i class="fas fa-forward"></i>
+            </button>
+            <button class="icon-button" id="toggle-button">Toggle</button>
+          </div>
+          <div id="track-info">
+            <p id="track-name">Track Name</p>
+          </div>
+          <div id="progress-container">
+            <div id="progress-bar"></div>
+          </div>
+          <div id="volume-control">
+            <label for="volume-slider">
+              <i class="fas fa-volume-up"></i>
+            </label>
+            <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="1">
+          </div>
+          <div id="track-list">
+            <ul>
+              <li data-src="OnandOn.mp3">On & On</li>
+              <li data-src="DifferentHeaven.mp3">Different Heaven</li>
+              <li data-src="DirtyPalm.mp3">Dirty Palm</li>
+              <li data-src="Fearless.mp3">Fearless</li>
+              <li data-src="Invincible(Deafkev).mp3">Invincible</li>
+              <li data-src="Invisible.mp3">Invisible</li>
+              <li data-src="Limitless.mp3">Limitless</li>
+              <li data-src="Link.mp3">Link</li>
+              <li data-src="Popsicle.mp3">Popsicle</li>
+              <li data-src="Stronger.mp3">Stronger</li>
+              <li data-src="Symbolism.mp3">Symbolism</li>
+              <li data-src="WaitForMe.mp3">Wait For Me</li>
+              <li data-src="Mortals.mp3">Mortals</li>
+            </ul>
+            <p>All ncs btw</p>
+          </div>
+        </div>
+      </div>
+      <style>
+        #music-player-wrapper {
+          position: fixed;
+          bottom: 20px;
+          right: 20px;
+          z-index: 1000;
+        }
+
+        #music-player {
+          background: #333;
+          color: white;
+          padding: 10px;
+          border-radius: 5px;
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+          transition: height 0.3s ease;
+          overflow: hidden;
+          height: 70px;
+        }
+
+        #music-player.expanded {
+          height: auto;
+        }
+
+        #player-controls {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+
+        .icon-button {
+          background: #555;
+          border: none;
+          color: white;
+          padding: 5px;
+          cursor: pointer;
+          font-size: 18px;
+          border-radius: 5px;
+          transition: background 0.3s;
+        }
+
+        .icon-button:hover {
+          background: #777;
+        }
+
+        #track-info {
+          margin-top: 5px;
+          display: block;
+        }
+
+        #track-list {
+          margin-top: 10px;
+          display: none;
+        }
+
+        #music-player.expanded #track-list {
+          display: block;
+        }
+
+        #track-list ul {
+          list-style: none;
+          padding: 0;
+        }
+
+        #track-list li {
+          cursor: pointer;
+          padding: 5px;
+          transition: background 0.3s;
+        }
+
+        #track-list li:hover {
+          background: #555;
+        }
+
+        #progress-container {
+          width: 100%;
+          background: #555;
+          border-radius: 5px;
+          cursor: pointer;
+          margin-top: 10px;
+        }
+
+        #progress-bar {
+          width: 0%;
+          height: 5px;
+          background: #f00;
+          border-radius: 5px;
+        }
+
+        #volume-control {
+          display: flex;
+          align-items: center;
+          gap: 5px;
+          margin-top: 10px;
+        }
+
+        #volume-slider {
+          cursor: pointer;
+          width: 100%;
+        }
+      </style>
+      <script>
+        const audio = document.getElementById('audio');
+        const audioSource = document.getElementById('audio-source');
+        const playButton = document.getElementById('play-button');
+        const pauseButton = document.getElementById('pause-button');
+        const stopButton = document.getElementById('stop-button');
+        const skipButton = document.getElementById('skip-button');
+        const backButton = document.getElementById('back-button');
+        const toggleButton = document.getElementById('toggle-button');
+        const trackName = document.getElementById('track-name');
+        const trackListItems = document.querySelectorAll('#track-list li');
+        const musicPlayer = document.getElementById('music-player');
+        const progressContainer = document.getElementById('progress-container');
+        const progressBar = document.getElementById('progress-bar');
+        const volumeSlider = document.getElementById('volume-slider');
+        let currentTrackIndex = 0;
+        const tracks = Array.from(trackListItems).map(item => {
+          return {
+            name: item.innerText,
+            src: item.getAttribute('data-src'),
+          };
+        });
+
+        function loadTrack(index) {
+          audioSource.src = tracks[index].src;
+          trackName.innerText = `Now Playing: ${tracks[index].name}`;
+          audio.load();
+          audio.play(); // Autoplay the track when loaded
+        }
+        playButton.addEventListener('click', () => {
+          audio.play();
+        });
+        pauseButton.addEventListener('click', () => {
+          audio.pause();
+        });
+        stopButton.addEventListener('click', () => {
+          audio.pause();
+          audio.currentTime = 0;
+          trackName.innerText = "Track Stopped";
+        });
+        skipButton.addEventListener('click', () => {
+          currentTrackIndex = (currentTrackIndex + 1) % tracks.length;
+          loadTrack(currentTrackIndex);
+        });
+        backButton.addEventListener('click', () => {
+          currentTrackIndex = (currentTrackIndex - 1 + tracks.length) % tracks.length;
+          loadTrack(currentTrackIndex);
+        });
+        toggleButton.addEventListener('click', () => {
+          musicPlayer.classList.toggle('expanded');
+          toggleButton.innerText = musicPlayer.classList.contains('expanded') ? 'Collapse' : 'Expand';
+        });
+        trackListItems.forEach((item, index) => {
+          item.addEventListener('click', () => {
+            currentTrackIndex = index;
+            loadTrack(currentTrackIndex);
+          });
+        });
+        audio.addEventListener('timeupdate', () => {
+          const progressPercentage = (audio.currentTime / audio.duration) * 100;
+          progressBar.style.width = `${progressPercentage}%`;
+        });
+        progressContainer.addEventListener('click', (event) => {
+          const rect = progressContainer.getBoundingClientRect();
+          const x = event.clientX - rect.left;
+          const width = rect.width;
+          const progress = (x / width) * audio.duration;
+          audio.currentTime = progress;
+        });
+        volumeSlider.addEventListener('input', () => {
+          audio.volume = volumeSlider.value;
+        });
+        loadTrack(currentTrackIndex); // Load and play the first track automatically on page load
+      </script>
+    </div>
+    <!--End Of Music Player-->
+    <!--Consent Banner-->
+    <div id="consent-banner" class="consent-banner">
+      <p class="consent-text"> I use cookies to analyze traffic and improve your experience. Do you consent to your data being sent to Google Analytics? </p>
+      <div class="consent-buttons">
+        <button class="accept-btn" onclick="acceptConsent()">Accept</button>
+        <button class="decline-btn" onclick="declineConsent()">Decline</button>
+      </div>
+    </div>
+    <script>
+      window.onload = function() {
+        if (localStorage.getItem('analytics_consent') === 'true') {
+          loadAnalytics();
+          document.getElementById('consent-banner').style.display = 'none';
+        }
+      };
+
+      function loadAnalytics() {
+        (function() {
+          var gtagScript = document.createElement('script');
+          gtagScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-EX3T7JR4FZ';
+          gtagScript.async = true;
+          document.head.appendChild(gtagScript);
+          window.dataLayer = window.dataLayer || [];
+
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', 'G-EX3T7JR4FZ');
+        })();
+      }
+
+      function acceptConsent() {
+        localStorage.setItem('analytics_consent', 'true');
+        loadAnalytics();
+        document.getElementById('consent-banner').style.display = 'none';
+      }
+
+      function declineConsent() {
+        localStorage.setItem('analytics_consent', 'false');
+        document.getElementById('consent-banner').style.display = 'none';
+      }
+    </script>
+    <!--End Of Banner-->
+    <!--Snooper Detector-->
+    <script>
+      document.addEventListener('keydown', function(event) {
+        if (event.key === 'F12' || (event.ctrlKey && event.shiftKey && (event.key === 'I' || event.key === 'C'))) {
+          alert('Caught you, try right clicking to view console!');
+          setTimeout(function() {
+            console.clear();
+            console.log('%cWHY ARE YOU SNOOPING?', 'font-size: 50px; color: red; font-weight: bold;');
+          }, 100);
+          event.preventDefault();
+        }
+      });
+    </script>
+    <!--End Of Snooper Detector-->
+    <!--Footer-->
+    <footer class="footer">
+      <p>Copyright (c) 2024-2025 C3ntr4cy <a href="https://github.com/C3ntr4cy/a/blob/main/LICENSE">MIT License</a>
+      </p>
+      <p> Established MM/DD/YYYY </p>
+    </footer>
+    <hr>
+    <a href="./sitemap.html">SiteMap</a>
+    </footer>
+  </body>
+</html>

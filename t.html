@@ -1,0 +1,56 @@
+<div id="openinabtblank">
+        <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <button id="openButton">Embed Site In About://blank</button>
+
+    <script>
+        document.getElementById("openButton").addEventListener("click", function() {
+            const newWindow = window.open("about:blank", "_blank", "width=800,height=600");
+            newWindow.document.write(`
+                <html>
+                <head>
+                    <title>About Blank</title>
+                    <style>
+                        body {
+                            margin: 0;
+                            overflow: hidden;
+                        }
+                        iframe {
+                            width: 100vw;
+                            height: 100vh;
+                            border: none;
+                        }
+                    </style>
+                </head>
+                <body>
+                    <iframe src="https://example.com"></iframe> <!-- Replace with your actual URL -->
+                </body>
+                </html>
+            `);
+            newWindow.document.close();
+        });
+    </script>
+</div>

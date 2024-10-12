@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C3Dev - Extras - Password Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+            background-color: #333;
+            color: white;
+        }
+        input[type="range"] {
+            width: 300px;
+        }
+        .options {
+            margin: 10px 0;
+        }
+        .container {
+            background-color: #ddd;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            width: 80%;
+            max-width: 400px;
+        }
+        #password {
+            display: block;
+            width: 50px;
+            max-width: 100%;
+            min-height: 40px;
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            background-color: #555;
+            color: white;
+            font-size: 16px;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            transition: width 0.2s ease, height 0.2s ease;
+        }
+        #password:focus {
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Password Generator</h1>
+    
+    <label for="length">Password Length: <span id="lengthValue">12</span></label>
+    <input type="range" id="length" min="8" max="100" value="12" onchange="updateLength()"><br>
+    
+    <div class="options">
+        <label>
+            <input type="checkbox" id="includeUppercase" checked>
+            Include Uppercase Letters
+        </label><br>
+        
+        <label>
+            <input type="checkbox" id="includeWords">
+            Include Real Words
+        </label><br>
+        
+        <label>
+            <input type="checkbox" id="includeSymbols" checked>
+            Include Symbols
+        </label><br>
+    </div>
+
+    <button onclick="generatePassword()">Generate Password</button><br>
+    
+    <h2>Your Password:</h2>
+    <div class="container">
+        <input type="text" id="password" readonly>
+    </div>
+
+    <script>
+        function updateLength() {
+            const length = document.getElementById('length').value;
+            document.getElementById('lengthValue').innerText = length;
+        }
+
+        function generatePassword() {
+            const length = document.getElementById('length').value;
+            const includeUppercase = document.getElementById('includeUppercase').checked;
+            const includeWords = document.getElementById('includeWords').checked;
+            const includeSymbols = document.getElementById('includeSymbols').checked;
+
+            let charset = 'abcdefghijklmnopqrstuvwxyz';
+            if (includeUppercase) charset += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            if (includeSymbols) charset += '!@#$%^&*()_+-=[]{}|;:,.<>?';
+
+            let password = '';
+            if (includeWords) {
+                const words = ['apple', 'banana', 'grape', 'orange', 'peach', 'plum', 'berry'];
+                for (let i = 0; i < Math.ceil(length / 5); i++) {
+                    password += words[Math.floor(Math.random() * words.length)] + '-';
+                }
+                password = password.slice(0, length);
+            } else {
+                for (let i = 0; i < length; i++) {
+                    const randomIndex = Math.floor(Math.random() * charset.length);
+                    password += charset[randomIndex];
+                }
+            }
+
+            const passwordField = document.getElementById('password');
+            passwordField.value = password;
+
+            const passwordLength = password.length;
+            passwordField.style.width = Math.min(passwordLength * 10, 300) + "px";
+            passwordField.style.height = passwordLength > 50 ? "auto" : "40px";
+        }
+    </script>
+</body>
+</html>

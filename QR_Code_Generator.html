@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C3Dev - Extras - QR Code Generator</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #1f2937;
+            color: #e5e7eb;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #374151;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            display: flex;
+        }
+
+        .form-container {
+            margin-right: 2rem;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #f9fafb;
+        }
+
+        input, select {
+            padding: 0.75rem;
+            border: 2px solid #4b5563;
+            border-radius: 8px;
+            width: 100%;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            background-color: #1f2937;
+            color: #e5e7eb;
+            transition: border-color 0.3s;
+        }
+
+        input:focus, select:focus {
+            border-color: #3b82f6;
+            outline: none;
+        }
+
+        button {
+            padding: 0.75rem 1.5rem;
+            background-color: #3b82f6;
+            border: none;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin: 0.5rem;
+        }
+
+        button:hover {
+            background-color: #2563eb;
+        }
+
+        .outline-button {
+            background-color: transparent;
+            border: 2px solid #3b82f6;
+            color: #3b82f6;
+        }
+
+        .outline-button:hover {
+            background-color: #3b82f6;
+            color: #fff;
+        }
+
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #qr-code {
+            margin-top: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        label {
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            display: block;
+            color: #e5e7eb;
+        }
+
+        .pregenerated img {
+            width: 200px;
+            height: 200px;
+            border: 2px solid #3b82f6;
+            border-radius: 8px;
+        }
+
+        .scan-me {
+            margin-top: 10px;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .scan-me img {
+            width: 24px;
+            height: 24px;
+            margin-right: 5px;
+        }
+
+        .logo-input {
+            margin: 10px 0;
+        }
+
+        .qr-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .qr-code-wrapper {
+            margin-left: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .hidden {
+            display: none;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <h1>QR Code Generator</h1>
+            
+            <label for="qr-type">Select QR Code Type</label>
+            <select id="qr-type">
+                <option value="text">Text/URL</option>
+                <option value="wifi">Wi-Fi Password</option>
+                <option value="phone">Phone Number</option>
+                <option value="email">Email Address</option>
+                <option value="sms">SMS</option>
+                <option value="vcard">Contact Card (vCard)</option>
+            </select>
+
+            <div id="text-input" class="input-field">
+                <label for="qr-input">Enter text or URL</label>
+                <input type="text" id="qr-input" placeholder="Enter text or URL">
+            </div>
+
+            <div id="wifi-input" class="input-field hidden">
+                <label for="wifi-ssid">Wi-Fi SSID</label>
+                <input type="text" id="wifi-ssid" placeholder="Wi-Fi Name">
+                <label for="wifi-password">Password</label>
+                <input type="password" id="wifi-password" placeholder="Wi-Fi Password">
+                <label for="wifi-encryption">Encryption</label>
+                <select id="wifi-encryption">
+                    <option value="WPA">WPA</option>
+                    <option value="WEP">WEP</option>
+                    <option value="nopass">None</option>
+                </select>
+            </div>
+
+            <div id="phone-input" class="input-field hidden">
+                <label for="phone-number">Phone Number</label>
+                <input type="text" id="phone-number" placeholder="Enter phone number">
+            </div>
+
+            <div id="email-input" class="input-field hidden">
+                <label for="email-address">Email Address</label>
+                <input type="email" id="email-address" placeholder="Enter email address">
+            </div>
+
+            <div id="sms-input" class="input-field hidden">
+                <label for="sms-number">Phone Number</label>
+                <input type="text" id="sms-number" placeholder="Enter phone number">
+                <label for="sms-message">Message</label>
+                <input type="text" id="sms-message" placeholder="Enter message">
+            </div>
+
+            <div id="vcard-input" class="input-field hidden">
+                <label for="vcard-name">Name</label>
+                <input type="text" id="vcard-name" placeholder="Enter name">
+                <label for="vcard-phone">Phone Number</label>
+                <input type="text" id="vcard-phone" placeholder="Enter phone number">
+                <label for="vcard-email">Email Address</label>
+                <input type="email" id="vcard-email" placeholder="Enter email address">
+            </div>
+
+            <label for="bg-color">Background Color</label>
+            <input type="color" id="bg-color" value="#ffffff">
+
+            <label for="fg-color">Foreground Color</label>
+            <input type="color" id="fg-color" value="#000000">
+
+            <div class="logo-input">
+                <label for="logo-input">Logo URL (optional)</label>
+                <input type="text" id="logo-input" placeholder="Enter logo URL">
+            </div>
+
+            <div class="button-container">
+                <button id="generate-btn">Generate QR Code</button>
+                <button id="download-png">Download PNG</button>
+                <button class="outline-button" id="download-svg">Download SVG</button>
+            </div>
+        </div>
+
+        <div class="qr-container">
+            <div id="qr-code" class="pregenerated">
+                <img id="pregenerated-qr" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://www.youtube.com/watch?v=dQw4w9WgXcQ&color=000000&bgcolor=ffffff">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function snoopingDetection() {
+            console.log("Snooping detected! Redirecting...");
+            alert("Warning: Snooping is not allowed.");
+            window.location.href = "https://www.example.com";
+        }
+
+        const snoopingPatterns = [
+
+        ];
+
+        const checkForSnooping = () => {
+            const currentUrl = window.location.href;
+            snoopingPatterns.forEach(pattern => {
+                if (currentUrl.includes(pattern)) {
+                    snoopingDetection();
+                }
+            });
+        };
+
+        checkForSnooping();
+
+        function isValidUrl(url) {
+            const shortenedDomains = [
+            /bit\.ly/, /tinyurl\.com/, /goo\.gl/, /t\.co/, /t\.ly/, 
+            /grabify\.link/, /location\.cyou/, /mymap\.icu/, 
+            /mapss\.icu/, /map-s\.online/, /crypto-o\.click/, 
+            /customer\.autos/, /account\.beuty/, /bank\.charity/, 
+            /photospace\.life/, /mymassive\.pics/, /photovault\.store/, 
+            /imagehub\.fun/, /picturestash\.mom/, /clickthis\.photo/, 
+            /sharevault\.cloud/, /picshare\.mom/, /picshare\.hair/, 
+            /imagestash\.pics/, /xtube\.chat/, /myprivate\.yachts/, 
+            /screensnaps\.top/, /customersupport\.click/, /mypicparade\.pics/, 
+            /imagevault\.cloud/, /photovault\.pics/, /foot\.wiki/, 
+            /gamergirld\.pro/, /picshost\.pics/, /pichost\.pics/, 
+            /imghost\.pics/, /screenshare\.pics/, /myprivate\.pics/, 
+            /shrekis\.life/, /screenshot\.best/, /gamingfun\.me/, 
+            /stopify\.co/
+            ];
+
+            return shortenedDomains.some(domain => domain.test(url));
+        }
+
+        function generateQRCode(data, bgColor, fgColor) {
+            const qrCodeImage = document.getElementById("pregenerated-qr");
+            const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(data)}&color=${fgColor.replace('#', '')}&bgcolor=${bgColor.replace('#', '')}`;
+            qrCodeImage.src = qrCodeUrl;
+        }
+
+        document.getElementById("generate-btn").addEventListener("click", () => {
+            const qrType = document.getElementById("qr-type").value;
+            let data = "";
+
+            switch (qrType) {
+                case "text":
+                    data = document.getElementById("qr-input").value;
+                    break;
+                case "wifi":
+                    const ssid = document.getElementById("wifi-ssid").value;
+                    const password = document.getElementById("wifi-password").value;
+                    const encryption = document.getElementById("wifi-encryption").value;
+                    data = `WIFI:S:${ssid};T:${encryption};P:${password};;`;
+                    break;
+                case "phone":
+                    data = `tel:${document.getElementById("phone-number").value}`;
+                    break;
+                case "email":
+                    data = `mailto:${document.getElementById("email-address").value}`;
+                    break;
+                case "sms":
+                    const smsNumber = document.getElementById("sms-number").value;
+                    const smsMessage = document.getElementById("sms-message").value;
+                    data = `sms:${smsNumber}?body=${encodeURIComponent(smsMessage)}`;
+                    break;
+                case "vcard":
+                    const vcardName = document.getElementById("vcard-name").value;
+                    const vcardPhone = document.getElementById("vcard-phone").value;
+                    const vcardEmail = document.getElementById("vcard-email").value;
+                    data = `BEGIN:VCARD\nVERSION:3.0\nN:${vcardName}\nTEL:${vcardPhone}\nEMAIL:${vcardEmail}\nEND:VCARD`;
+                    break;
+                default:
+                    break;
+            }
+
+            const bgColor = document.getElementById("bg-color").value;
+            const fgColor = document.getElementById("fg-color").value;
+
+            if (isValidUrl(data)) {
+                alert("Warning: The URL provided is a shortened link. Please be cautious.");
+            }
+
+            generateQRCode(data, bgColor, fgColor);
+        });
+    </script>
+</body>
+</html>
